@@ -19,8 +19,39 @@ public class IntegrativeTask {
         countOfItems = sc.nextInt();
         return countOfItems;
     }
-    public static String [] AssingValues(String [] nameOfMaterials){
-        
+    public static String [] AssingValues(String [] nameOfMaterials,int x){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i<x;i++){
+            nameOfMaterials[i] = sc.nextLine();
+        }
         return nameOfMaterials;
+    }
+    public static double [] AssingAmount(double [] amountOfMaterials,int x){
+        Scanner sc  = new Scanner(System.in);
+        for(int i = 0; i<x ;i++){
+            amountOfMaterials[i] = sc.nextDouble();
+        }
+        return amountOfMaterials;
+    }
+    public static double [] AssingPricesHomecenter(double [] pricesOfMaterialsInHomecenter, int x){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i<x; i++){
+            pricesOfMaterialsInHomecenter[i] = sc.nextDouble();
+        }
+        return pricesOfMaterialsInHomecenter;
+    }
+    public static double [] AssingPricesDownTownGrocery(double [] pricesOfMaterialsInDownTownGrocery, int x){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i<x ; i++){
+            pricesOfMaterialsInDownTownGrocery[i] = sc.nextDouble();
+        }
+    return pricesOfMaterialsInDownTownGrocery;
+    }
+    public static double [] AssingPricesNehiborhoodStore(double [] priceOfMaterialsNeihborhood, int x){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i<x; i++){
+            priceOfMaterialsNeihborhood[i] = sc.nextDouble();
+        }
+        return priceOfMaterialsNeihborhood;
     }
 }
