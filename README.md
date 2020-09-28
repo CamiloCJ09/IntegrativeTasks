@@ -17,4 +17,6 @@ La información del producto es:<br>
 Cantidad solicitada (número real)<br>
 Utilización (obra negra, obra blanca, pintura)**<br>
 <br>
-Su tío conociendo sus habilidades y competencias en programación le ha pedido el favor que le facilite una aplicación para llevar el presupuesto de la obra, si los materiales son adquiridos en: HomeCenter, Ferreteria del centro, Ferretería del barrio. Cada ferreteria puede cobrar o no, un valor por domicilio el cual depende de la ubicación del inmueble y del total de la cuenta. Suponga en este ejercicio que los valores del domicilio son los mismos para las tres ferreterías.
+Su tío conociendo sus habilidades y competencias en programación le ha pedido el favor que le facilite una aplicación para llevar el presupuesto de la obra, si los materiales son adquiridos en: HomeCenter, Ferreteria del centro, Ferretería del barrio. Cada ferreteria puede cobrar o no, un valor por domicilio el cual depende de la ubicación del inmueble y del total de la cuenta. Suponga en este ejercicio que los valores del domicilio son los mismos para las tres ferreterías.<br>
+
+![](https://user-images.githubusercontent.com/64206343/94388406-940f4580-0112-11eb-8b1e-1e3ef440e808.PNG)
