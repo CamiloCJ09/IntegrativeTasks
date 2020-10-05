@@ -8,20 +8,20 @@ public class IntegrativeTask {
     public static void main(String[] args) {
         
         Scanner sc = new Scanner(System.in);
-        int x = AskCountArticles();
+        int x = askCountArticles();
         
-        String [] nameOfMaterials = new String[x];
-        double [] amountOfMaterials = new double[x];
-        double [] priceOfMaterialsHomecenter = new double[x];
-        double [] priceOfMaterialsDownTownGrocery = new double[x];
-        double [] priceOfMaterialsNeihborhood = new double[x];
-        int sumHomecenter = 0;
-        int sumDownTown = 0;
-        int sumNeighboor = 0;
+        String [] nameOfMaterials = new String[x]; //Here we will save the name of the materials that we are goint to use
+        double [] amountOfMaterials = new double[x]; //Here we will save the amount of each materials that we are going to buy
+        double [] priceOfMaterialsHomecenter = new double[x]; //Here we will save the prices of the materials in Homecenter
+        double [] priceOfMaterialsDownTownGrocery = new double[x]; //Here we will save the prices of the materials in down town grocery
+        double [] priceOfMaterialsNeihborhood = new double[x]; //Here we will save the prices of the materials in the neihborhood store
+        int sumHomecenter = 0; //Here we will save the value of the sum for all the materials in Homecenter
+        int sumDownTown = 0; //Here we will save the value of the sum for all the materials in down town store
+        int sumNeighboor = 0; //Here we will save the value of the sum for all the materials in neihborhood store
 
         //Calls
         TypeOfWork [] array = new TypeOfWork[x]; //We use this array to say the type of work
-        BuildingZone BuildingPlace = null;
+        BuildingZone BuildingPlace = null; //here we going to save the building zone for the work
         System.out.println("Where is the building zone?\n 1: North \n 2: DownTown \n 3: South ");
         int var = sc.nextInt();
         switch (var) {
@@ -37,33 +37,24 @@ public class IntegrativeTask {
             
         }
         
-        nameOfMaterials = NameOfObjets(nameOfMaterials, x);
-        amountOfMaterials = AssignAmount(amountOfMaterials, nameOfMaterials, x);
-        array = TypeOfWorks(array,nameOfMaterials,x);
-        priceOfMaterialsHomecenter = AssignPricesHomecenter(priceOfMaterialsHomecenter, nameOfMaterials, x);
-        priceOfMaterialsDownTownGrocery = AssignPricesDownTownGrocery(priceOfMaterialsDownTownGrocery, nameOfMaterials, x);
-        priceOfMaterialsNeihborhood = AssignPricesNehiborhoodStore(priceOfMaterialsNeihborhood, nameOfMaterials, x);
-
-        //
-        /*for(int i = 0; i<x;i++){
-            System.out.println(priceOfMaterialsHomecenter[i]); //Imprimir los el tipo de obra que va a ser
-        }
-        for(int j = 0; j<x;j++){
-            System.out.println(priceOfMaterialsDownTownGrocery[j]); //Imprimir los el tipo de obra que va a ser
-        }
-        for(int k = 0; k<x;k++){
-            System.out.println(priceOfMaterialsNeihborhood[k]); //Imprimir los el tipo de obra que va a ser
-        }
-        */
-        sumHomecenter = SumPerStore(nameOfMaterials, priceOfMaterialsHomecenter, amountOfMaterials, array, x);
-        sumDownTown = SumPerStore(nameOfMaterials, priceOfMaterialsDownTownGrocery, amountOfMaterials, array, x);
-        sumNeighboor = SumPerStore(nameOfMaterials, priceOfMaterialsNeihborhood, amountOfMaterials, array, x);
+        //Calling methods
+        nameOfMaterials = nameOfObjets(nameOfMaterials, x);
+        amountOfMaterials = assignAmount(amountOfMaterials, nameOfMaterials, x);
+        array = typeOfWorks(array,nameOfMaterials,x);
+        //Setting prices
+        priceOfMaterialsHomecenter = assignPricesHomecenter(priceOfMaterialsHomecenter, nameOfMaterials, x);
+        priceOfMaterialsDownTownGrocery = assignPricesDownTownGrocery(priceOfMaterialsDownTownGrocery, nameOfMaterials, x);
+        priceOfMaterialsNeihborhood = assignPricesNehiboorhoodStore(priceOfMaterialsNeihborhood, nameOfMaterials, x);
+        //Setting the sum for the materials
+        sumHomecenter = sumPerStore(nameOfMaterials, priceOfMaterialsHomecenter, amountOfMaterials, array, x);
+        sumDownTown = sumPerStore(nameOfMaterials, priceOfMaterialsDownTownGrocery, amountOfMaterials, array, x);
+        sumNeighboor = sumPerStore(nameOfMaterials, priceOfMaterialsNeihborhood, amountOfMaterials, array, x);
         System.out.println("The sum of materials in Homecenter with workforce is: "+sumHomecenter+"\n"+"The sum of materials in DownTown Grocery with workforce is: "+sumDownTown+"\n"+"The sum of materials in Neihgborhood store with workforce is: "+sumNeighboor);
 
-        WhereisBetterToBuy(array,BuildingPlace,amountOfMaterials,priceOfMaterialsHomecenter, priceOfMaterialsDownTownGrocery, priceOfMaterialsNeihborhood, x, nameOfMaterials);
+        whereIsBetterToBuy(array,BuildingPlace,amountOfMaterials,priceOfMaterialsHomecenter, priceOfMaterialsDownTownGrocery, priceOfMaterialsNeihborhood, x, nameOfMaterials);
         
         
-        int deploy ;
+        int deploy ; //We use it to know the materials per type of work
         do{
             System.out.println("the materials of which work you want to know, push 0 to exit");
             deploy = sc.nextInt();
@@ -78,13 +69,13 @@ public class IntegrativeTask {
 
     
     /** 
-     * AskCountArticles 
+     * askCountArticles 
      * We determine the amount of items without repeating that are going to be purchased
      * <b> Pre: </b>There must be an initialized variable to later save the return value <br>
      * <b> Post: </b> <br>
      * @return x int
      */
-    public static int AskCountArticles() {
+    public static int askCountArticles() {
         int x = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("How much materials do you want to buy?");
@@ -93,7 +84,7 @@ public class IntegrativeTask {
     }
     
     /** 
-     * NameOfObjects
+     * nameOfObjects
      * We assign the name of each of the materials
      * <b> Pre: </b>There must be an array declared to be able to save the values ​​to enter <br>
      * <b> Post: </b> <br>
@@ -101,7 +92,7 @@ public class IntegrativeTask {
      * @param x
      * @return nameOfMaterials String[]
      */
-    public static String [] NameOfObjets(String [] nameOfMaterials,int x) {
+    public static String [] nameOfObjets(String [] nameOfMaterials,int x) {
         Scanner sc = new Scanner(System.in);
         for(int i = 0; i<x;i++){
             System.out.println("Imput the name of the material "+(i+1));
@@ -111,7 +102,7 @@ public class IntegrativeTask {
     }
     
     /** 
-     * AssignAmount
+     * assignAmount
      * We assign the quantity of how many materials we are going to order for each material
      * <b> Pre: </b>There must be an array declared to store the amount of materials associated with each material<br>
      * <b> Post: </b> <br>
@@ -120,7 +111,7 @@ public class IntegrativeTask {
      * @param x
      * @return amountOfMaterials double[]
      */
-    public static double [] AssignAmount(double [] amountOfMaterials,String [] nameOfMaterials,int x){
+    public static double [] assignAmount(double [] amountOfMaterials,String [] nameOfMaterials,int x){
         Scanner sc  = new Scanner(System.in);
         for(int i = 0; i<x ;i++){
             System.out.println("How much "+nameOfMaterials[i]+" do you want?");
@@ -130,7 +121,7 @@ public class IntegrativeTask {
     }
     
     /** 
-     * AssignPricesHomecenter
+     * assignPricesHomecenter
      * We assign the price of each material in Homecenter
      * <b> Pre: </b>There must be an array declared to store the value of each material in homecenter<br>
      * <b> Post: </b> <br>
@@ -139,7 +130,7 @@ public class IntegrativeTask {
      * @param x
      * @return priceOfMaterialsInHomecenter double[]
      */
-    public static double [] AssignPricesHomecenter(double [] pricesOfMaterialsInHomecenter,String [] nameOfMaterials, int x){
+    public static double [] assignPricesHomecenter(double [] pricesOfMaterialsInHomecenter,String [] nameOfMaterials, int x){
         Scanner sc = new Scanner(System.in);
         for(int i = 0; i<x; i++){
             System.out.println("How much "+nameOfMaterials[i]+" cost in Homecenter?");
@@ -149,7 +140,7 @@ public class IntegrativeTask {
     }
     
     /** 
-     * AssignPricesDownTownGrocery
+     * assignPricesDownTownGrocery
      * We assign the price of each material in DownTown Grocery
      * <b> Pre: </b>There must be an array declared to store the value of each material in DownTown Grocery <br>
      * <b> Post: </b> <br>
@@ -158,7 +149,7 @@ public class IntegrativeTask {
      * @param x
      * @return pricesOfMaterialsInDownTownGrocery double[]
      */
-    public static double [] AssignPricesDownTownGrocery(double [] pricesOfMaterialsInDownTownGrocery,String [] nameOfMaterials, int x){
+    public static double [] assignPricesDownTownGrocery(double [] pricesOfMaterialsInDownTownGrocery,String [] nameOfMaterials, int x){
         Scanner sc = new Scanner(System.in);
         for(int i = 0; i<x ; i++){
             System.out.println("How much "+nameOfMaterials[i]+" cost in DownTown Grocery?");
@@ -168,7 +159,7 @@ public class IntegrativeTask {
     }
     
     /** 
-     * AssignPricesNeighborhood
+     * assignPricesNeighborhood
      * We assign the price of each material in neighborhood store
      * <b> Pre: </b>There must be an array declared to store the value of each material in neighborhood store <br>
      * <b> Post: </b> <br>
@@ -177,7 +168,7 @@ public class IntegrativeTask {
      * @param x
      * @return priceOfMaterialsNeihborhood double[]
      */
-    public static double [] AssignPricesNehiborhoodStore(double [] priceOfMaterialsNeihborhood,String [] nameOfMaterials, int x){
+    public static double [] assignPricesNehiboorhoodStore(double [] priceOfMaterialsNeihborhood,String [] nameOfMaterials, int x){
         Scanner sc = new Scanner(System.in);
         for(int i = 0; i<x; i++){
             System.out.println("How much "+nameOfMaterials[i]+" cost in Neihborhood store?");
@@ -187,7 +178,7 @@ public class IntegrativeTask {
     }
     
     /** 
-     * TypeOfWorks
+     * typeOfWorks
      * We store in an array the type of work for which each material is
      * <b> Pre: </b> <br>
      * <b> Post: </b> <br>
@@ -196,7 +187,7 @@ public class IntegrativeTask {
      * @param x
      * @return theTypeOfWork TypeOfWork[]
      */
-    public static TypeOfWork [] TypeOfWorks(TypeOfWork [] theTypeOfWork,String [] nameOfMaterials, int x){
+    public static TypeOfWork [] typeOfWorks(TypeOfWork [] theTypeOfWork,String [] nameOfMaterials, int x){
         Scanner sc = new Scanner(System.in);
         int i = 0;
         while(i<x){
@@ -224,7 +215,7 @@ public class IntegrativeTask {
     */
 
     /** 
-     * SumPerStore
+     * sumPerStore
      * We carry out the respective operations to return the total value including labor
      * <b> Pre: </b>All arrays must have values ​​assigned in each position <br>
      * <b> Post: </b> <br>
@@ -236,7 +227,7 @@ public class IntegrativeTask {
      * @return valueFromStore int
      */
     
-    public static int SumPerStore(String [] nameOfMaterials,double [] imputMaterial,double [] amountOfMaterials,TypeOfWork [] typeObject, int x){
+    public static int sumPerStore(String [] nameOfMaterials,double [] imputMaterial,double [] amountOfMaterials,TypeOfWork [] typeObject, int x){
         int valueFromStore = 0;
         int white = 0;
         int black = 0;
@@ -285,7 +276,7 @@ public class IntegrativeTask {
     }
     
     /** 
-     * WhereisBetterToBuy
+     * whereIsBetterToBuy
      * We calculate the best quote and add the address depending on the value
      * <b> Pre: </b>All arrays must have values ​​assigned in each position <br>
      * <b> Post: </b> <br>
@@ -298,7 +289,7 @@ public class IntegrativeTask {
      * @param x
      * @param NameOfMaterial
      */
-    public static void WhereisBetterToBuy(TypeOfWork [] typeObject,BuildingZone buildingPlace,double [] amountOfMaterials,double [] PricesHomencenter, double [] PricesDownTown, double [] PricesNeihborghood, int x,String [] NameOfMaterial){
+    public static void whereIsBetterToBuy(TypeOfWork [] typeObject,BuildingZone buildingPlace,double [] amountOfMaterials,double [] PricesHomencenter, double [] PricesDownTown, double [] PricesNeihborghood, int x,String [] NameOfMaterial){
         int totalWhereIsBetterToBuy = 0;
         int white = 0;
         int black = 0;
